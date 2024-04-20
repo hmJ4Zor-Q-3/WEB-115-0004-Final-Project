@@ -1,8 +1,11 @@
+*{
+    margin: 0;
+}
+
 .header{ 
-    position: absolute;
-    left: 0;
-    top: 0;
     width: 100%;
+    display: flex;
+    padding-bottom: 6px;
     background-color: rgb(8, 79, 28);
     color: #fff;
 }
@@ -25,3 +28,17 @@
     /* margin-left: 56%; */
     text-align: right;
 }
+
+.content{
+    top:auto;
+    overflow: hidden;
+    display: block;
+    color: #000;
+}
+
+.footer{
+    display: block;
+    color: #000;
+}
+
+/*misc*/

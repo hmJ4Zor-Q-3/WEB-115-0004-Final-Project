@@ -1,0 +1,27 @@
+.header{ 
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    background-color: rgb(8, 79, 28);
+    color: #fff;
+}
+
+.title-box{
+    margin-left: auto;
+    margin-right: auto;
+    width: fit-content;
+}
+
+.title-box h1{ 
+    margin-top: 12px;
+    margin-bottom: 0%;
+    font-size: 72px;
+    text-align: center;
+}
+
+.title-box p{
+    margin-top: 0%;
+    /* margin-left: 56%; */
+    text-align: right;
+}

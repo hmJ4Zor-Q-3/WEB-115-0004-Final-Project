@@ -15,31 +15,41 @@
         </div>
 
         <div class="content centered">
-            <div class="centered">
-                <button class="stand-alone-button" id="create-plan">Create your weekly meal plan</button>
-            </div>
-            <br><br>
-            
-            <div hidden>
+            <br>
+
+            <div>
                 <form class="form centered" id="personal-information">
                     <label for="name-field">Name: </label>
                     <input type="text" name="name" id="name-field">
 
                     <label for="email-field">Email: </label>
-                    <input type="email" name="email" id="email-field" required>
+                    <input type="email" name="email" id="email-field" required><!--add a red * to indicate required-->
 
                     <label for="goal-field">Goal: </label>
                     <input type="text" name="goal" id="goal-field">
 
-                    <input class="stand-alone-button" type="submit" value="Start">
+                    <input class="stand-alone-button" type="submit" value="Create your weekly meal plan">
                 </form>
             </div>
 
-            <br><br>
-            <button class="stand-alone-button" id="clear-planner" hidden>Clear</button>
-            <button class="stand-alone-button" id="print-planner" hidden>Print</button>
-            <button class="stand-alone-button" id="download-planner" hidden>Download</button>
-            <button class="stand-alone-button" hidden>Open in a new page</button>
+            <div id="display-section">
+
+            </div>
+
+            <br>           
+            <div hidden>
+                <br>
+                <button class="stand-alone-button" id="clear-planner">Clear</button>
+                <button class="stand-alone-button" id="finalizer-planner">Finalize</button>
+            </div>
+
+            <div hidden>
+                <br>
+                <button class="stand-alone-button" id="clear-plan">Clear</button>
+                <button class="stand-alone-button" id="print-plan">Print</button>
+                <button class="stand-alone-button" id="download-plan">Download</button>
+                <button class="stand-alone-button" id="open-new-page">Open in a new page</button>
+            </div>
         </div>
 
         <div class="footer">
@@ -47,6 +57,7 @@
             <br>
             <p><em>Last changed: April 20th 2024</em></p>
         </div>
+        <script src="https://code.jquery.com/jquery-3.7.1.slim.min.js"></script>
         <script src="projectJS.js"></script>
     </body>
 </html>

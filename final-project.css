@@ -100,3 +100,15 @@ body{
     margin-right: auto;
     width: fit-content; 
 }
+
+.horizontal-scroll-volume{
+    display: flex;
+    flex-direction:row;
+    max-width: 600px;
+    overflow: auto;
+}
+
+.horizontal-scroll-volume > div{
+    float: left;
+    margin: 12px;
+}

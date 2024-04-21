@@ -51,20 +51,6 @@ function dailyPlannerFor(day){
     .append($("<input>").attr("type", "text").attr("id", m.id)));
 
     return dP;
-    
-
-    // <form class="form centered" id="personal-information">
-    //                 <label for="name-field">Name: </label>
-    //                 <input type="text" name="name" id="name-field">
-
-    //                 <label for="email-field">Email: </label>
-    //                 <input type="email" name="email" id="email-field" required><!--add a red * to indicate required-->
-
-    //                 <label for="goal-field">Goal: </label>
-    //                 <input type="text" name="goal" id="goal-field">
-
-    //                 <input class="stand-alone-button" type="submit" value="Create your weekly meal plan">
-    //             </form>
 } // end dailyPlannerFor()
 
 

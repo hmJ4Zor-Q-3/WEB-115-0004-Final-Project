@@ -22,12 +22,9 @@ function generatePlanner(e){
     $("#display-section").append(headFor($("#name-field").val(), $("#email-field").val(), $("#goal-field").val()));
 
     // add ability to add meals for week
-    $("#display-section").append(`<div class="horizontal-scroll-volume"></div>`)
-    for(let i = 1; i <= 7; i++)
-    {
-        $("#display-section .horizontal-scroll-volume").append(`day ${i}`);
-    }
-    
+    let hDVolume = $("<div>").attr("class", "horizontal-scroll-volume");
+    ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"].forEach((d) => hDVolume.append(dailyPlannerFor(d)));
+    $("#display-section").append(hDVolume);
 }
 
 function headFor(nam, email, goal){
@@ -40,7 +37,7 @@ function headFor(nam, email, goal){
 } // end headFor
 
 function dailyPlannerFor(day){
-
+    return day;
 } // end dailyPlannerFor()
 
 

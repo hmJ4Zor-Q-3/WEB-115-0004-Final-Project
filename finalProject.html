@@ -14,8 +14,32 @@
             </div>
         </div>
 
-        <div class="content">
-            <p>content</p>
+        <div class="content centered">
+            <div class="centered">
+                <button class="stand-alone-button" id="create-plan">Create your weekly meal plan</button>
+            </div>
+            <br><br>
+            
+            <div hidden>
+                <form class="form centered" id="personal-information">
+                    <label for="name-field">Name: </label>
+                    <input type="text" name="name" id="name-field">
+
+                    <label for="email-field">Email: </label>
+                    <input type="email" name="email" id="email-field" required>
+
+                    <label for="goal-field">Goal: </label>
+                    <input type="text" name="goal" id="goal-field">
+
+                    <input class="stand-alone-button" type="submit" value="Start">
+                </form>
+            </div>
+
+            <br><br>
+            <button class="stand-alone-button" id="clear-planner" hidden>Clear</button>
+            <button class="stand-alone-button" id="print-planner" hidden>Print</button>
+            <button class="stand-alone-button" id="download-planner" hidden>Download</button>
+            <button class="stand-alone-button" hidden>Open in a new page</button>
         </div>
 
         <div class="footer">

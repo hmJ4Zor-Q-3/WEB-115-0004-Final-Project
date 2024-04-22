@@ -1,4 +1,4 @@
-let plan = "";
+let plan;
 
 $(document).ready(() => {
     $("#personal-information").submit(generatePlanner);
@@ -8,8 +8,8 @@ $(document).ready(() => {
 
     $("#clear-plan").click(clearPlan);
     $("#print-plan").click(() => selectivelyPrint());
-    $("#download-plan").click(() => selectivelyDownload());
-    $("#open-new-page").click(() => alert("window.location.href"));
+    $("#download-plan").click(() => selectivelyDownload());    
+    $("#open-new-page").click(() => window.open(`${window.location.href.replace(/[^\/]*([?].*)?$/, '')}/planViewer.html?plan="${JSON.stringify(plan)}"`));  // remove last section of path, and if present query strings remove too. Then join to desired file and query
 });
 
 
@@ -33,15 +33,6 @@ function generatePlanner(e){
     ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"].forEach((d) => hDVolume.append(dailyPlannerFor(d)));
     $("#display-section").append(hDVolume);
 }
-
-function headFor(nam, email, goal){
-    return $("<div>")
-    .append($("<h1>").append("Meal Plan").attr("class", "centered"))
-    .append($("<p>").append($("<b>").append("Name")).append(`: ${nam}`))
-    .append($("<p>").append($("<b>").append("Email")).append(`: ${email}`))
-    .append($("<p>").append($("<b>").append("Goal")).append(`: ${goal}`))
-    .append($("<br>"));
-} // end headFor
 
 function dailyPlannerFor(day){
     dP = $("<div>").addClass("form").attr("id", day.toLowerCase())
@@ -71,6 +62,7 @@ function clearPlanner(){
     g = $("#goal-field").val("");
 
     $("#display-section").html("");
+    plan = undefined;
 }
 
 function finalizePlanner(){
@@ -96,18 +88,6 @@ function finalizePlanner(){
     plan.plans = plans;
 } // end finalizePlanner()
 
-function dailyPlanFor(planData){
-    let plan = $("<div>")
-    .append($("<h2>").html(planData.title).append($("<hr>")))
-    .append($("<br>"));
-    
-    planData.plans.forEach((x) => plan.append($("<div>")
-    .append($("<h4>").html(x.title))
-    .append($("<p>").html(x.plan))));
-
-    return plan;
-} // end dailyPlanFor()
-
 
 
 function clearPlan(){
@@ -115,13 +95,11 @@ function clearPlan(){
     $("#clear-plan").parent().toggle();
 
     clearPlanner();
-    plan = "";
 } // end clearPlan()
 
 function selectivelyPrint(){
-    notPrint = $(":not(*:has(.printable-lineage)):not(.printable-lineage):not(.printable-lineage *):visible"); // get all elements, except: any that've a printable descendent, and any that're themselves printable, and any that are descded from a printable element. and they aren't already hidden. i.e the whole lineage of anything marked "printable-lineage". Added for fear of accusations of plaigarism or cheating due to it's "complexity" relative to the course.
-    notPrint.hide();
-    print()
+    notPrint = $(":not(*:has(.printable-lineage)):not(.printable-lineage):not(.printable-lineage *):visible").hide(); // get all elements, except: any that've a printable descendent, and any that're themselves printable, and any that are descded from a printable element. and they aren't already hidden. i.e the whole lineage of anything marked "printable-lineage". Added for fear of accusations of plaigarism or cheating due to it's "complexity" relative to the course.
+    print();
     notPrint.show();
 } // end selectivelyPrint()
 

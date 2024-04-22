@@ -9,7 +9,7 @@ $(document).ready(() => {
     $("#clear-plan").click(clearPlan);
     $("#print-plan").click(() => selectivelyPrint());
     $("#download-plan").click(() => selectivelyDownload());    
-    $("#open-new-page").click(() => window.open(`${window.location.href.replace(/[^\/]*([?].*)?$/, '')}/planViewer.html?plan="${JSON.stringify(plan)}"`));  // remove last section of path, and if present query strings remove too. Then join to desired file and query
+    $("#open-new-page").click(() => window.open(`${window.location.href.replace(/[^\/]*([?].*)?$/, '')}/planViewer.html?plan=${encodeURIComponent(JSON.stringify(plan))}`));  // remove last section of path, and if present query strings remove too. Then join to desired file and query
 });
 
 

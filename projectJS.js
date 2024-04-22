@@ -1,3 +1,5 @@
+let plan = "";
+
 $(document).ready(() => {
     $("#personal-information").submit(generatePlanner);
 
@@ -5,8 +7,8 @@ $(document).ready(() => {
     $("#finalizer-planner").click(finalizePlanner);
 
     $("#clear-plan").click(clearPlan);
-    $("#print-plan").click(() => print("placeholder"));
-    $("#download-plan").click(() => alert("placeholder"));
+    $("#print-plan").click(() => selectivelyPrint());
+    $("#download-plan").click(() => selectivelyDownload());
     $("#open-new-page").click(() => alert("window.location.href"));
 });
 
@@ -19,7 +21,12 @@ function generatePlanner(e){
     $("#clear-planner").parent().toggle();
 
     // add provided information in head
-    $("#display-section").append(headFor($("#name-field").val(), $("#email-field").val(), $("#goal-field").val()));
+    let name = $("#name-field").val();
+    let email = $("#email-field").val();
+    let goal = $("#goal-field").val();
+    
+    $("#display-section").append(headFor(name, email, goal));
+    plan = {name: name, email: email, goal: goal}
 
     // add ability to add meals for week
     let hDVolume = $("<div>").attr("class", "horizontal-scroll-volume").attr("id", "plans");
@@ -86,6 +93,7 @@ function finalizePlanner(){
 
     $("#plans").remove();
     plans.forEach((x) => $("#display-section").append(dailyPlanFor(x)).append($("<br>")));
+    plan.plans = plans;
 } // end finalizePlanner()
 
 function dailyPlanFor(planData){
@@ -95,8 +103,7 @@ function dailyPlanFor(planData){
     
     planData.plans.forEach((x) => plan.append($("<div>")
     .append($("<h4>").html(x.title))
-    .append($("<p>").html(x.plan)))
-    .append($("<br>")));
+    .append($("<p>").html(x.plan))));
 
     return plan;
 } // end dailyPlanFor()
@@ -108,4 +115,17 @@ function clearPlan(){
     $("#clear-plan").parent().toggle();
 
     clearPlanner();
-}
+    plan = "";
+} // end clearPlan()
+
+function selectivelyPrint(){
+    notPrint = $(":not(*:has(.printable-lineage)):not(.printable-lineage):not(.printable-lineage *):visible"); // get all elements, except: any that've a printable descendent, and any that're themselves printable, and any that are descded from a printable element. and they aren't already hidden. i.e the whole lineage of anything marked "printable-lineage". Added for fear of accusations of plaigarism or cheating due to it's "complexity" relative to the course.
+    notPrint.hide();
+    print()
+    notPrint.show();
+} // end selectivelyPrint()
+
+function selectivelyDownload(){
+    let file = new File([document.getElementById("display-section").outerHTML], `${plan.name}_Meal_Plan_${new Date().toLocaleDateString("en-us", {day:"2-digit", month:"short", year:"numeric"})}.htm`.replace(/\s/g, '_'));
+    $("#downloader").attr("href", URL.createObjectURL(file)).attr("download", file.name).click();
+} // end selectivelyDownload()

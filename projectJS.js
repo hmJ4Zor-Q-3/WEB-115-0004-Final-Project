@@ -70,15 +70,6 @@ function finalizePlanner(){
     $("#clear-planner").parent().toggle();
     $("#clear-plan").parent().toggle();
 
-    // unfortunely jquery isn't this powerful
-    // let plans = $("#plans > div") // every div right under plans
-    // .map((x) => $(`#${x.attr("id")} input`)) // for each div get all inputs that're under it
-    // .map((v, l) => 
-    // [{
-    //     title: $(`label[for=${v.attr("id")}]`).html(), 
-    //     plan: v.val()
-    // }][0]); // get each input's value and label as an object
-
     let plans = Array.from(document.getElementById("plans").children)
     .map((x) => Array.from(x.children))
     .map((x) => 
@@ -94,12 +85,20 @@ function finalizePlanner(){
     }][0]));
 
     $("#plans").remove();
-    console.log(plans)
-    plans.forEach((p) => console.log(`print the plan: ${p}`))
+    plans.forEach((x) => $("#display-section").append(dailyPlanFor(x)).append($("<br>")));
 } // end finalizePlanner()
 
-function dailyPlanFor(){
+function dailyPlanFor(planData){
+    let plan = $("<div>")
+    .append($("<h2>").html(planData.title).append($("<hr>")))
+    .append($("<br>"));
+    
+    planData.plans.forEach((x) => plan.append($("<div>")
+    .append($("<h4>").html(x.title))
+    .append($("<p>").html(x.plan)))
+    .append($("<br>")));
 
+    return plan;
 } // end dailyPlanFor()
 
 

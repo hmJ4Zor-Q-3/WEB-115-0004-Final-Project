@@ -9,7 +9,7 @@ $(document).ready(() => {
     $("#clear-plan").click(clearPlan);
     $("#print-plan").click(() => selectivelyPrint());
     $("#download-plan").click(() => selectivelyDownload());    
-    $("#open-new-page").click(() => window.open(`${window.location.href.replace(/[^\/]*([?].*)?$/, '')}/planViewer.html?plan=${encodeURIComponent(JSON.stringify(plan))}`));  // remove last section of path, and if present query strings remove too. Then join to desired file and query
+    $("#open-new-page").click(() => window.open(`${window.location.href.replace(/[^\/]*([?].*)?$/, '')}/planViewer.html?planUUID=${idFor(JSON.stringify(plan))}`));  // remove last section of path, and if present query strings remove too. Then join to desired file and query
 });
 
 
@@ -107,3 +107,9 @@ function selectivelyDownload(){
     let file = new File([document.getElementById("display-section").outerHTML], `${plan.name}_Meal_Plan_${new Date().toLocaleDateString("en-us", {day:"2-digit", month:"short", year:"numeric"})}.htm`.replace(/\s/g, '_'));
     $("#downloader").attr("href", URL.createObjectURL(file)).attr("download", file.name).click();
 } // end selectivelyDownload()
+
+function idFor(value){
+    let uuid = crypto.randomUUID();
+    localStorage.setItem(uuid, value);
+    return uuid;
+} // end idFor()

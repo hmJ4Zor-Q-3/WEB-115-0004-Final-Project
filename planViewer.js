@@ -1,7 +1,7 @@
 let plan;
 let params = new URLSearchParams(window.location.search);
-if(params.has("plan"))
-    plan = JSON.parse(params.get("plan"));
+if(params.has("planUUID"))
+    plan = JSON.parse(localStorage.getItem(params.get("planUUID")));
 else
     console.warn("No plan data was provided");
 
